@@ -29,6 +29,9 @@ main {
   margin-top: -12rem;
 }
 
+/*screen1*/
+
+
 h1 {
   font-family: 'Montserrat' , sans-serif;
   color: #34355B;
@@ -57,7 +60,6 @@ input, button {
   border: none;
   padding: 1.6rem;
   font-family: 'DM Sans' , sans-serif;
-
 }
 
 input {
@@ -67,6 +69,8 @@ input {
   width: 5rem;
 
   border-radius:  .4rem 0 0 .4rem ;
+
+  outline: 0;
 }
 
 button {
@@ -76,4 +80,38 @@ button {
   color: #FFF;
 
   border-radius: 0 .4rem .4rem 0;
+
+  cursor: pointer;
+  transition: background .3s;
+}
+
+button:hover {
+  background-color:  #5d5dd4;
+}
+
+/*screen2*/
+
+.screen2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.3rem
+}
+
+.screen2 h2 {
+  color: #34355B;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.screen2 button {
+  width: min(17rem, 90%);
+  border-radius: .4rem;
+}
+
+.hide {
+  display: none;
 }
