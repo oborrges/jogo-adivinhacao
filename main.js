@@ -4,31 +4,43 @@ let screen2 = document.querySelector(".screen2")
 let btnTry = document.querySelector("#btnTry")
 let btnReset = document.querySelector("#btnReset")
 let randomNumber = Math.round(Math.random() * 10)
-let xAtempts = 1
+let xAttempts = 1
 
 //EVENTOS
 btnTry.addEventListener("click", handleTryClick)
 btnReset.addEventListener("click", handleResetClick)
 document.addEventListener("keydown", handleEnterKeyPressed)
-  
+
 //FUNÇÕES
 function handleTryClick(event) {
-  event.preventDefault() // não deixa a tela carregar após o click do button
+  event.preventDefault()
 
-  const inputNumber = document.querySelector('#inputNumber') //recebendo número fornecido no input
+  const inputNumber = document.querySelector('#inputNumber')
+  const guessedNumber = Number(inputNumber.value)
 
-  if(Number(inputNumber.value == randomNumber)){
-    toggleScreen()
-    screen2.querySelector("h2").innerText = `Acertou em ${xAtempts} tentativas!`
+  if (inputNumber.value.trim() === "") {
+    alert("Por favor, insira um número antes de tentar.")
+    return
   }
+
+  if (isNaN(guessedNumber) || guessedNumber < 0 || guessedNumber > 10) {
+    alert("Por favor, utilize um número válido entre 0 e 10.")
+    return
+  }
+
+  if (guessedNumber === randomNumber) {
+    toggleScreen()
+    screen2.querySelector("h2").innerText = `Acertou em ${xAttempts} tentativas!`
+  }
+
   inputNumber.value = ""
-  xAtempts++
+  xAttempts++
 }
+
 
 function handleResetClick() {
   toggleScreen()
-  xAtempts = 1
-
+  xAttempts = 1
   randomNumber = Math.round(Math.random() * 10)
 }
 
@@ -37,15 +49,16 @@ function toggleScreen() {
   screen2.classList.toggle("hide")
 }
 
-
 function handleEnterKeyPressed(enterPressed) {
-  if(enterPressed.key == "Enter" && screen1.classList.contains("hide")) 
+  if (enterPressed.key === "Enter" && screen1.classList.contains("hide")) {
     handleResetClick()
+  }
 }
+
 
 /* DESAFIOS 
 
 -REFATURAR A FUNÇÃO DE ENTER 🆗
--FAZER UM LIMITE DE 0 E 10 (NÉM ABAIXO NÉM A CIMA) ALERTA
-- ATIVAR O BOTÃO APENAS SE TIVER UM NÚMERO
+-FAZER UM LIMITE DE 0 E 10 (NÉM ABAIXO NÉM A CIMA) ALERTA🆗
+- ATIVAR O BOTÃO APENAS SE TIVER UM NÚMERO🆗
 */
