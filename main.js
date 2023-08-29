@@ -17,25 +17,33 @@ function handleTryClick(event) {
 
   const inputNumber = document.querySelector('#inputNumber')
   const guessedNumber = Number(inputNumber.value)
-
+  
   if (inputNumber.value.trim() === "") {
     alert("Por favor, insira um número antes de tentar.")
-    return
+    return;
   }
-
+  
   if (isNaN(guessedNumber) || guessedNumber < 0 || guessedNumber > 10) {
     alert("Por favor, utilize um número válido entre 0 e 10.")
     return
   }
-
+  
   if (guessedNumber === randomNumber) {
     toggleScreen()
-    screen2.querySelector("h2").innerText = `Acertou em ${xAttempts} tentativas!`
+    if (xAttempts === 1) {
+      screen2.querySelector("h2").innerText = `Acertou em ${xAttempts} tentativa!`
+    } else {
+      screen2.querySelector("h2").innerText = `Acertou em ${xAttempts} tentativas!`
+    }
+  } else {
+    if (guessedNumber < randomNumber) {
+      alert("Ainda não é esse, continue tentando...")
+    } 
   }
-
+  
   inputNumber.value = ""
   xAttempts++
-}
+}  
 
 
 function handleResetClick() {
@@ -61,4 +69,5 @@ function handleEnterKeyPressed(enterPressed) {
 -REFATURAR A FUNÇÃO DE ENTER 🆗
 -FAZER UM LIMITE DE 0 E 10 (NÉM ABAIXO NÉM A CIMA) ALERTA🆗
 - ATIVAR O BOTÃO APENAS SE TIVER UM NÚMERO🆗
+- AO ACERTAR EM UMA TENTATIVA A MENSAGEM NÃO DEVE APARECER EM PLURAL🆗
 */
